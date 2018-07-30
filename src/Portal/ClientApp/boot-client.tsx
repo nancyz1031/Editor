@@ -7,9 +7,27 @@ import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'react-router-redux';
 import { createBrowserHistory } from 'history';
 import configureStore from './configureStore';
-import { ApplicationState }  from './store';
+import { ApplicationState } from './store';
 import * as RoutesModule from './routes';
 let routes = RoutesModule.routes;
+import * as signalR from '@aspnet/signalr';
+
+const connection = new signalR.HubConnectionBuilder()
+    .withUrl("/chatHub")
+    .build();
+
+connection.on("ReceiveMessage", (user, message) => {
+    const msg = message.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    const encodedMsg = user + " says " + msg;
+    console.log(encodedMsg);
+});
+
+connection.start().catch(err => console.error(err.toString()));
+
+window.setInterval(() => {
+    connection.invoke("SendMessage", 'user', 'message 123')
+        .catch(err => console.error(err.toString()));
+}, 1000)
 
 // Create browser history to use in the Redux store
 const baseUrl = document.getElementsByTagName('base')[0].getAttribute('href')!;
@@ -24,8 +42,8 @@ function renderApp() {
     // and injects the app into a DOM element.
     ReactDOM.render(
         <AppContainer>
-            <Provider store={ store }>
-                <ConnectedRouter history={ history } children={ routes } />
+            <Provider store={store}>
+                <ConnectedRouter history={history} children={routes} />
             </Provider>
         </AppContainer>,
         document.getElementById('react-app')
