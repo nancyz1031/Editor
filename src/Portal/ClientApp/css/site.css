@@ -11,5 +11,10 @@ body {
 .pacMan {
     background-color: yellow;
     position: absolute;
+    border-radius: 50%;
     transition: left 0.1s, top 0.1s;
+}
+
+.pacMan.up {
+    outline: 1px double red;
 }
