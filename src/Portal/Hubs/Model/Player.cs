@@ -2,7 +2,7 @@
 
 namespace Editor.Hubs.Model
 {
-    public class User
+    public class Player
     {
         public string Id { get; }
         public string Name { get; }
@@ -10,7 +10,7 @@ namespace Editor.Hubs.Model
         public int Score { get; set; }
         public Position Position { get; set; }
 
-        public User(string id, string userName, string color, Position position)
+        public Player(string id, string userName, string color, Position position)
         {
             this.Id = id;
             this.Name = userName;

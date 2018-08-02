@@ -8,12 +8,20 @@
     "experimentalDecorators": true,
     "sourceMap": true,
     "skipDefaultLibCheck": true,
-    "strict": true,
-    "lib": ["es6", "dom"],
-    "types": ["webpack-env"]
+    "strict": false,
+    "lib": [
+      "es6",
+      "dom"
+    ],
+    "types": [
+      "webpack-env"
+    ],
+    "compilerOptions": {
+      "strictNullChecks": false
+    }
   },
   "exclude": [
-      "bin",
-      "node_modules"
+    "bin",
+    "node_modules"
   ]
 }

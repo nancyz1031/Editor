@@ -1,5 +1,5 @@
 import * as React from 'react';
 import { Route } from 'react-router-dom';
-import { World } from './components/World';
+import { WorldContainer } from './components/WorldContainer';
 
-export const routes = <World />;
+export const routes = <WorldContainer />;

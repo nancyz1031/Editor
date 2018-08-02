@@ -3,11 +3,8 @@
     public class Variables
     {
         public int MaxPea { get; } = 6;
-
         public int Step { get; } = 20;
-
-        public int WorldWidth { get; } = 400;
-
-        public int WorldHeight { get; } = 300;
+        public int WorldWidth { get; } = 40;
+        public int WorldHeight { get; } = 30;
     }
 }

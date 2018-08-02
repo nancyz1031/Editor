@@ -18,3 +18,7 @@ body {
 .pacMan.up {
     outline: 1px double red;
 }
+
+.pea {
+    background-color: yellowgreen;
+}

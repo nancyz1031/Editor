@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { PacMan } from './PacMan';
 import { variables } from '../variables';
+import * as contract from '../contract';
 
 export interface StateProps {
-    x: number;
-    y: number;
+    player: contract.Player;
 }
 
 export interface DispatchProps {
@@ -48,7 +48,7 @@ export class Player extends React.Component<StateProps & DispatchProps, {}> {
 
     public render() {
         const props = this.props;
-        return <PacMan x={props.x} y={props.y} name={""}>
+        return <PacMan player={props.player}>
         </PacMan>;
     }
 }
