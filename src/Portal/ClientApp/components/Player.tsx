@@ -16,6 +16,10 @@ function init(dispatchProps: DispatchProps) {
 
     document.addEventListener('keydown', (event) => {
         switch (event.key) {
+            case "ArrowRight":
+            case "ArrowLeft":
+            case "ArrowUp":
+            case "ArrowDown":
             case 'w':
             case 'd':
             case 's':
@@ -27,6 +31,10 @@ function init(dispatchProps: DispatchProps) {
 
     document.addEventListener('keyup', (event) => {
         switch (event.key) {
+            case "ArrowRight":
+            case "ArrowLeft":
+            case "ArrowUp":
+            case "ArrowDown":
             case 'w':
             case 'd':
             case 's':
@@ -37,7 +45,7 @@ function init(dispatchProps: DispatchProps) {
     });
 
     window.setInterval(() => {
-        dispatchProps.move(dic['w'], dic['d'], dic['s'], dic['a']);
+        dispatchProps.move(dic['w'] || dic['ArrowUp'], dic['d'] || dic['ArrowRight'], dic['s'] || dic['ArrowDown'], dic['a'] || dic['ArrowLeft']);
     }, variables.refreshFrequency);
 }
 
