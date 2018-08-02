@@ -1,4 +1,4 @@
 export const variables = {
     size: 10,
-    refreshFrequency: 200,
+    refreshFrequency: 100,
 }

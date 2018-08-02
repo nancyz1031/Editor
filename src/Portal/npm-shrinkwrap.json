@@ -172,7 +172,7 @@
       "requires": {
         "kind-of": "3.2.2",
         "longest": "1.0.1",
-        "repeat-string": "1.6.1"
+        "redott-string": "1.6.1"
       }
     },
     "alphanum-sort": {
@@ -387,7 +387,7 @@
             "extend-shallow": "2.0.1",
             "fill-range": "4.0.0",
             "isobject": "3.0.1",
-            "repeat-element": "1.1.2",
+            "redott-element": "1.1.2",
             "snapdragon": "0.8.1",
             "snapdragon-node": "2.1.1",
             "split-string": "2.1.1",
@@ -474,7 +474,7 @@
           "requires": {
             "extend-shallow": "2.0.1",
             "is-number": "3.0.0",
-            "repeat-string": "1.6.1",
+            "redott-string": "1.6.1",
             "to-regex-range": "2.1.1"
           }
         },
@@ -765,7 +765,7 @@
       "requires": {
         "expand-range": "1.8.2",
         "preserve": "0.2.0",
-        "repeat-element": "1.1.2"
+        "redott-element": "1.1.2"
       }
     },
     "brorand": {
@@ -1714,8 +1714,8 @@
         "is-number": "2.1.0",
         "isobject": "2.1.0",
         "randomatic": "1.1.7",
-        "repeat-element": "1.1.2",
-        "repeat-string": "1.6.1"
+        "redott-element": "1.1.2",
+        "redott-string": "1.6.1"
       }
     },
     "finalhandler": {
@@ -4513,15 +4513,15 @@
       "integrity": "sha1-abBi2XhyetFNxrVrpKt3L9jXBRE=",
       "dev": true
     },
-    "repeat-element": {
+    "redott-element": {
       "version": "1.1.2",
-      "resolved": "https://registry.npmjs.org/repeat-element/-/repeat-element-1.1.2.tgz",
+      "resolved": "https://registry.npmjs.org/redott-element/-/redott-element-1.1.2.tgz",
       "integrity": "sha1-7wiaF40Ug7quTZPrmLT55OEdmQo=",
       "dev": true
     },
-    "repeat-string": {
+    "redott-string": {
       "version": "1.6.1",
-      "resolved": "https://registry.npmjs.org/repeat-string/-/repeat-string-1.6.1.tgz",
+      "resolved": "https://registry.npmjs.org/redott-string/-/redott-string-1.6.1.tgz",
       "integrity": "sha1-jcrkcOHIirwtYA//Sndihtp15jc=",
       "dev": true
     },
@@ -5076,7 +5076,7 @@
       "dev": true,
       "requires": {
         "is-number": "3.0.0",
-        "repeat-string": "1.6.1"
+        "redott-string": "1.6.1"
       },
       "dependencies": {
         "is-number": {

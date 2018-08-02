@@ -23,8 +23,15 @@ export class PacMan extends React.Component<Props, {}> {
             classNames += " current";
         }
 
-        return <div className={classNames} style={{ left: left, top: top, width: variables.size, height: variables.size }}>
-            <span style={{ color: player.color }}>{player.id}</span>
+        return <div
+            className={classNames}
+            style={{
+                left: left,
+                top: top,
+                width: variables.size,
+                height: variables.size
+            }}>
+            <span style={{ color: player.color }}>{player.name}</span>
         </div>;
     }
 }

@@ -1,5 +1,5 @@
 import * as signalR from '@aspnet/signalr';
-import { Rank, Player, World, Pea, Position, Players } from './contract';
+import { Rank, Player, World, Dot, Position, Players } from './contract';
 import { store } from './boot-client';
 import { actionCreators } from './store/WorldAction';
 import { ApplicationState } from './store';
@@ -16,8 +16,8 @@ connection.on("UpdateRanks", (ranks: Rank[]) => {
     store.dispatch(actionCreators.updateRanks(ranks));
 });
 
-connection.on("UpdatePeas", (peas: { [key: string]: Pea }) => {
-    store.dispatch(actionCreators.updatePeas(peas));
+connection.on("UpdateDots", (dots: { [key: string]: Dot }) => {
+    store.dispatch(actionCreators.updateDots(dots));
 });
 
 connection.on("StartGame", (playerId: string, world: World) => {

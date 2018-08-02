@@ -12,7 +12,7 @@ export interface Player {
 }
 
 export interface Variables {
-    maxPea: number;
+    maxDot: number;
     step: number;
     worldWidth: number;
     worldHeight: number;
@@ -26,18 +26,18 @@ export interface Rank {
 }
 
 export interface Variables {
-    maxPea: number;
+    maxDot: number;
     step: number;
     worldWidth: number;
     worldHeight: number;
 }
 
-export interface Pea {
+export interface Dot {
     id: string;
     position: Position;
 }
 
-export type Peas = { [key: string]: Pea };
+export type Dots = { [key: string]: Dot };
 
 export type Players = { [key: string]: Player };
 
@@ -45,7 +45,7 @@ export type Ranks = Rank[];
 
 export interface World {
     variables: Variables;
-    peas: Peas;
+    dots: Dots;
     players: Players;
     ranks: Ranks;
 }

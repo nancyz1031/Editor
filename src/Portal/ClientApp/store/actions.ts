@@ -1,10 +1,10 @@
-import { Rank, Peas, Player, World, Players } from "../contract";
+import { Rank, Dots, Player, World, Players } from "../contract";
 
 export const enum ActionType {
     PlayerMove,
     UpdateUsers,
     UpdateRanks,
-    UpdatePeas,
+    UpdateDots,
     UpdatePlayers,
     StartGame,
     OtherPlayerMoveTo,
@@ -28,9 +28,9 @@ export interface UpdateRanksAction {
     ranks: Rank[],
 }
 
-export interface UpdatePeasAction {
-    type: ActionType.UpdatePeas,
-    peas: Peas,
+export interface UpdateDotsAction {
+    type: ActionType.UpdateDots,
+    dots: Dots,
 }
 
 export interface UpdatePlayersAction {

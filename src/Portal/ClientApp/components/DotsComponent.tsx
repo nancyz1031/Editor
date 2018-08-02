@@ -3,21 +3,21 @@ import { variables } from '../variables';
 import * as contract from '../contract';
 
 export interface StateProps {
-    peas: contract.Peas;
+    dots: contract.Dots;
 }
 
 export interface DispatchProps {
 }
 
-export class PeasComponent extends React.Component<StateProps & DispatchProps, {}> {
-    public renderPea(pea: contract.Pea) {
-        const position = pea.position;
+export class DotsComponent extends React.Component<StateProps & DispatchProps, {}> {
+    public renderDot(dot: contract.Dot) {
+        const position = dot.position;
         const left = position.x * variables.size;
         const top = position.y * variables.size;
         const size = variables.size / 2;
         const margin = variables.size / 4;
-        return <div key={pea.id}
-            className="pea"
+        return <div key={dot.id}
+            className="dot"
             style={{
                 left: left,
                 top: top,
@@ -31,14 +31,14 @@ export class PeasComponent extends React.Component<StateProps & DispatchProps, {
 
     public render() {
         const props = this.props;
-        if (!props.peas) {
+        if (!props.dots) {
             return null;
         }
 
-        const peas = props.peas;
+        const dots = props.dots;
         const elements = [];
-        for (var id in peas) {
-            elements.push(this.renderPea(peas[id]));
+        for (var id in dots) {
+            elements.push(this.renderDot(dots[id]));
         }
 
         return <div>{elements}</div>;

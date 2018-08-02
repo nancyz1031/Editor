@@ -4,7 +4,8 @@ import { RanksComponent, StateProps, DispatchProps } from './RanksComponent';
 
 function mapStateToProps(state: ApplicationState): StateProps {
     return {
-        ranks: state.world.ranks
+        ranks: state.world.ranks,
+        id: state.player.id,
     };
 }
 

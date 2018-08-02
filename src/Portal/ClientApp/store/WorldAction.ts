@@ -1,10 +1,10 @@
 import { Action, Reducer } from 'redux';
-import { ActionType, UpdateRanksAction, UpdatePeasAction, StartGameAction, OtherPlayerMoveToAction, UpdatePlayersAction } from './actions';
-import { World, Rank, Ranks, Peas, Player, Variables, Players, Position } from '../contract';
+import { ActionType, UpdateRanksAction, UpdateDotsAction, StartGameAction, OtherPlayerMoveToAction, UpdatePlayersAction } from './actions';
+import { World, Rank, Ranks, Dots, Player, Variables, Players, Position } from '../contract';
 
 export interface WorldStoreState {
     variables: Variables;
-    peas: Peas;
+    dots: Dots;
     players: Players;
     ranks: Ranks;
 }
@@ -13,11 +13,11 @@ export const actionCreators = {
     updateRanks: (ranks: Ranks) => {
         return { type: ActionType.UpdateRanks, ranks: ranks };
     },
-    updatePeas: (peas: Peas) => {
-        return { type: ActionType.UpdatePeas, peas: peas };
+    updateDots: (dots: Dots) => {
+        return { type: ActionType.UpdateDots, dots: dots };
     },
     startGame: (playerId: string, world: World) => {
-        return { type: ActionType.StartGame, playerId:playerId, world: world };
+        return { type: ActionType.StartGame, playerId: playerId, world: world };
     },
     updatePlayers: (players: Players) => {
         return { type: ActionType.UpdatePlayers, players: players };
@@ -27,7 +27,7 @@ export const actionCreators = {
     },
 };
 
-export const reducer: Reducer<WorldStoreState> = (state: WorldStoreState = null, action: Action | UpdateRanksAction | UpdatePeasAction | StartGameAction) => {
+export const reducer: Reducer<WorldStoreState> = (state: WorldStoreState = null, action: Action | UpdateRanksAction | UpdateDotsAction | StartGameAction) => {
     switch (action.type) {
         case ActionType.UpdateRanks:
             return Object.assign({}, state, {
@@ -39,9 +39,9 @@ export const reducer: Reducer<WorldStoreState> = (state: WorldStoreState = null,
                 players: (action as UpdatePlayersAction).players
             });
 
-        case ActionType.UpdatePeas:
+        case ActionType.UpdateDots:
             return Object.assign({}, state, {
-                peas: (action as UpdatePeasAction).peas
+                dots: (action as UpdateDotsAction).dots
             });
 
         case ActionType.StartGame:

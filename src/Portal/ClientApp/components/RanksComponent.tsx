@@ -3,6 +3,7 @@ import * as contract from '../contract';
 
 export interface StateProps {
     ranks: contract.Ranks;
+    id: string;
 }
 
 export interface DispatchProps {
@@ -15,8 +16,25 @@ export class RanksComponent extends React.Component<StateProps & DispatchProps, 
             return null;
         }
 
+        const id = props.id;
         const rankElements = props.ranks
-            .map(rank => <li key={rank.id} style={{ color: rank.color }}>{rank.userName} {rank.score}</li>);
-        return <ul id="ranks">{rankElements}</ul>;
+            .map((rank, index) => {
+                const isCurrent = rank.id === id;
+                return <tr key={rank.id} style={{ color: rank.color }}>
+                    <td>{(index + 1).toString() + (isCurrent ? " (you)" : "")}</td>
+                    <td>{rank.score}</td>
+                    <td>{rank.userName}</td>
+                </tr>
+            });
+        return <table id="ranks">
+            <thead>
+                <th>RANK</th>
+                <th>SCORE</th>
+                <th>NAME</th>
+            </thead>
+            <tbody>
+                {rankElements}
+            </tbody>
+        </table>;
     }
 }

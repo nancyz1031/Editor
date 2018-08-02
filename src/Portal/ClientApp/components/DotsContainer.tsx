@@ -1,10 +1,10 @@
 import { connect, Dispatch } from 'react-redux';
 import { ApplicationState } from '../store';
-import { PeasComponent, StateProps, DispatchProps } from './PeasComponent';
+import { DotsComponent, StateProps, DispatchProps } from './DotsComponent';
 
 function mapStateToProps(state: ApplicationState): StateProps {
     return {
-        peas: state.world.peas
+        dots: state.world.dots
     };
 }
 
@@ -13,7 +13,7 @@ function mapDispatchToProps(dispatch: Dispatch<any>): DispatchProps {
     };
 }
 
-export const PeasContainer = connect(
+export const DotsContainer = connect(
     mapStateToProps,
     mapDispatchToProps
-)(PeasComponent);
+)(DotsComponent);

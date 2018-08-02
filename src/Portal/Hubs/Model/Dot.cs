@@ -2,15 +2,20 @@
 
 namespace Editor.Hubs.Model
 {
-    public class Pea
+    public class Dot
     {
         public string Id { get; }
         public Position Position { get; }
 
-        public Pea(Position position)
+        public Dot(Position position)
         {
             this.Id = Guid.NewGuid().ToString();
             this.Position = position;
+        }
+
+        public override string ToString()
+        {
+            return Position.ToString();
         }
     }
 }

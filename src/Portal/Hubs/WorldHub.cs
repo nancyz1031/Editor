@@ -2,8 +2,6 @@
 using Microsoft.AspNetCore.SignalR;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -13,7 +11,7 @@ namespace Editor.Hubs
     {
         private const string SystemMessageFunc = "SystemMessage";
         private const string UpdateRanksFunc = "UpdateRanks";
-        private const string UpdatePeasFunc = "UpdatePeas";
+        private const string UpdateDotsFunc = "UpdateDots";
         private const string StartGameFunc = "StartGame";
         private const string PlayerMoveToFunc = "PlayerMoveTo";
         private const string UpdatePlayersFunc = "UpdatePlayers";
@@ -34,7 +32,7 @@ namespace Editor.Hubs
                 var oldRanks = JsonConvert.SerializeObject(world.Ranks);
                 world.Ranks = world.Players.Values.ToList()
                     .Select(user => new Rank() { Id = user.Id, UserName = user.Name, Color = user.Color, Score = user.Score })
-                    .OrderBy(rank => rank.Score)
+                    .OrderByDescending(rank => rank.Score)
                     .ToList();
                 var newRanks = JsonConvert.SerializeObject(world.Ranks);
 
@@ -63,7 +61,7 @@ namespace Editor.Hubs
             var user = new Player(id, userName, color);
             world.Players[user.Id] = user;
             Start();
-            TryFillPeas();
+            TryFillDots();
             RefreshRanks();
             RefreshPlayers();
         }
@@ -107,17 +105,17 @@ namespace Editor.Hubs
             world.Players.TryGetValue(playerId, out Player player);
             player.Position = position;
             Clients.Others.SendAsync(PlayerMoveToFunc, playerId, position);
-            var peas = world.Peas.Values.ToArray();
-            foreach (var pea in peas)
+            var dots = world.Dots.Values.ToArray();
+            foreach (var dot in dots)
             {
-                if (pea.Position.Equals(position))
+                if (dot.Position.Equals(position))
                 {
-                    TryEatPea(playerId, pea.Id);
+                    TryEatDot(playerId, dot.Id);
                 }
             }
         }
 
-        private void TryEatPea(string userId, string peaId)
+        private void TryEatDot(string userId, string dotId)
         {
             if (!world.Players.TryGetValue(userId, out Player user))
             {
@@ -126,37 +124,37 @@ namespace Editor.Hubs
 
             lock (SyncRoot)
             {
-                if (!world.Peas.ContainsKey(peaId))
+                if (!world.Dots.ContainsKey(dotId))
                 {
-                    // Other user eat this pea already
+                    // Other user eat this dot already
                     return;
                 }
 
                 user.Score++;
-                world.Peas.TryRemove(peaId, out Pea pea);
-                TryFillPeas();
+                world.Dots.TryRemove(dotId, out Dot dot);
+                TryFillDots();
                 RefreshRanks();
             }
         }
 
-        private void TryFillPeas()
+        private void TryFillDots()
         {
-            if (world.Peas.Count >= world.Variables.MaxPea)
+            if (world.Dots.Count >= world.Variables.MaxDot)
             {
                 return;
             }
 
             lock (SyncRoot)
             {
-                while (world.Peas.Count < world.Variables.MaxPea)
+                while (world.Dots.Count < world.Variables.MaxDot)
                 {
-                    var pea = new Pea(GetRandomPosition());
-                    world.Peas[pea.Id] = pea;
+                    var dot = new Dot(GetRandomPosition());
+                    world.Dots[dot.Id] = dot;
                 }
 
                 if (Clients != null)
                 {
-                    Clients.All.SendAsync(UpdatePeasFunc, world.Peas.Values.ToList());
+                    Clients.All.SendAsync(UpdateDotsFunc, world.Dots.Values.ToList());
                 }
             }
         }
