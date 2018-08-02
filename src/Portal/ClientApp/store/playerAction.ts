@@ -2,6 +2,8 @@ import { Action, Reducer } from 'redux';
 import { variables } from '../variables'
 import { ActionType, StartGameAction, PlayerMoveAction, Direction } from './actions';
 import { Player, Position } from '../contract';
+import * as connector from '../connector';
+import { utility } from '../utility';
 
 export type PlayerStoreState = Player;
 
@@ -65,6 +67,8 @@ export const reducer: Reducer<PlayerStoreState> = (state: PlayerStoreState = emp
         case ActionType.PlayerMove:
             const position = getNewPosition(state.position, (action as PlayerMoveAction).direction);
             if (position !== state.position) {
+                // connector.playerMoveTo(position);
+                utility.playerMoveTo(position);
                 return Object.assign({}, state, {
                     position: position
                 });

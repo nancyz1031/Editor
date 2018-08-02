@@ -18,7 +18,7 @@ export class PacMan extends React.Component<Props, {}> {
         const left = position.x * variables.size;
         const top = position.y * variables.size;
         return <div className="pacMan" style={{ left: left, top: top, width: variables.size, height: variables.size }}>
-            {player.name}
+            <span style={{ color: player.color }}>{player.name}</span>
         </div>;
     }
 }

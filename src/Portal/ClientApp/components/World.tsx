@@ -2,7 +2,8 @@ import * as React from 'react';
 import { PlayerContainer } from './PlayerContainer';
 import { variables } from '../variables';
 import * as contract from '../contract';
-import { PeasContainer } from './PeaContainer';
+import { PeasContainer } from './PeasContainer';
+import { RanksContainer } from './RanksContainer';
 
 export type StateProps = contract.World;
 
@@ -19,9 +20,14 @@ export class World extends React.Component<StateProps & DispatchProps, {}> {
 
         const width = world.variables.worldWidth * variables.size;
         const height = world.variables.worldHeight * variables.size;
-        return <div id="world" style={{ width: width, height: height }}>
-            <PeasContainer />
-            <PlayerContainer />
+        return <div>
+            <div>
+                <div id="world" style={{ width: width, height: height }}>
+                    <PeasContainer />
+                    <PlayerContainer />
+                </div>
+                <RanksContainer />
+            </div>
         </div>;
     }
 }

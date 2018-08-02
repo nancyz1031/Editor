@@ -41,9 +41,11 @@ export type Peas = { [key: string]: Pea };
 
 export type Players = { [key: string]: Player };
 
+export type Ranks = Rank[];
+
 export interface World {
     variables: Variables;
     peas: Peas;
     players: Players;
-    ranks: Rank[];
+    ranks: Ranks;
 }

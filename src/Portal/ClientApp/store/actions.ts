@@ -6,6 +6,7 @@ export const enum ActionType {
     UpdateRanks,
     UpdatePeas,
     StartGame,
+    MoveTo,
 }
 
 export enum Direction {

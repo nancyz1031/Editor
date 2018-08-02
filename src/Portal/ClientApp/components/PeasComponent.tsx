@@ -14,7 +14,18 @@ export class PeasComponent extends React.Component<StateProps & DispatchProps, {
         const position = pea.position;
         const left = position.x * variables.size;
         const top = position.y * variables.size;
-        return <div className="pea" style={{ left: left, top: top, width: variables.size / 2, height: variables.size / 2 }}>
+        const size = variables.size / 2;
+        const margin = variables.size / 4;
+        return <div key={pea.id}
+            className="pea"
+            style={{
+                left: left,
+                top: top,
+                width: size,
+                height: size,
+                marginLeft: margin,
+                marginTop: margin,
+            }}>
         </div>
     }
 
@@ -30,6 +41,6 @@ export class PeasComponent extends React.Component<StateProps & DispatchProps, {
             elements.push(this.renderPea(peas[id]));
         }
 
-        return elements as any;
+        return <div>{elements}</div>;
     }
 }

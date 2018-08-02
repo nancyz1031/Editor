@@ -1,6 +1,6 @@
 import { connect, Dispatch } from 'react-redux';
 import { ApplicationState } from '../store';
-import * as PlayerAction from '../store/player';
+import * as PlayerAction from '../store/playerAction';
 import { Player, StateProps, DispatchProps } from './Player';
 import { Direction } from '../store/actions';
 

@@ -79,14 +79,14 @@ namespace Editor.Hubs
             }
         }
 
-        public void UserMoveTo(string userId, Position position)
+        public void PlayerMoveTo(Position position)
         {
             var peas = world.Peas.Values.ToArray();
             foreach (var pea in peas)
             {
-                if (pea.Position == position)
+                if (pea.Position.Equals(position))
                 {
-                    TryEatPea(userId, pea.Id);
+                    TryEatPea(this.Context.ConnectionId, pea.Id);
                 }
             }
         }
@@ -109,6 +109,7 @@ namespace Editor.Hubs
                 user.Score++;
                 world.Peas.TryRemove(peaId, out Pea pea);
                 TryFillPeas();
+                RefreshRanks();
             }
         }
 

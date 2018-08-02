@@ -1,5 +1,5 @@
-import * as PlayerAction from './player';
-import * as WorldAction from './worldAction';
+import * as PlayerAction from './playerAction';
+import * as WorldAction from './WorldAction';
 
 // The top-level state object
 export interface ApplicationState {

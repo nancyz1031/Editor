@@ -3,16 +3,25 @@ body {
 }
 
 #world {
-    margin: 20px auto;
+    margin-top: 20px;
+    margin-left: 20px;
     outline: 8px double #0D23A4;
     position: relative;
+    float: left;
+}
+
+#ranks{
+    margin-top: 20px;
+    margin-right:20px;
+    float:right;
+    outline: 8px double #fff;
 }
 
 .pacMan {
     background-color: yellow;
     position: absolute;
     border-radius: 50%;
-    transition: left 0.1s, top 0.1s;
+    transition: left 0.05s, top 0.05s;
 }
 
 .pacMan.up {
@@ -21,4 +30,14 @@ body {
 
 .pea {
     background-color: yellowgreen;
+    border-radius: 50%;
+    position: absolute;
+    animation: blinker 1s linear infinite;
 }
+
+@keyframes blinker {
+    50% {
+      opacity: 0.4;
+    }
+  }
+  
