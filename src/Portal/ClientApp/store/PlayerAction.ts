@@ -1,17 +1,18 @@
 import { Action, Reducer } from 'redux';
+import { variables } from '../variables'
 
 // -----------------
 // STATE - This defines the type of data maintained in the Redux store.
 
-export interface PlayerState {
+export interface PlayerStoreState {
     x: number;
     y: number;
     id: string;
 }
 
-enum Direction {
+export enum Direction {
     None,
-    Top,
+    Up,
     Down,
     Left,
     Right,
@@ -39,27 +40,41 @@ export const actionCreators = {
 // ----------------
 // REDUCER - For a given state and action, returns the new state. To support time travel, this must not mutate the old state.
 
-const speed = 1;
-export const reducer: Reducer<PlayerState> = (state: PlayerState = {x:0,y:0,id:"id"}, action: Action | Move) => {
+const maxX = variables.worldWidth - variables.pacManWidth;
+const maxY = variables.worldHeight - variables.pacManHeight;
+
+export const reducer: Reducer<PlayerStoreState> = (state: PlayerStoreState = { x: 0, y: 0, id: "id" }, action: Action | Move) => {
     switch (action.type) {
         case 'Move':
             let x = state.x;
             let y = state.y;
             switch ((action as Move).direction) {
                 case Direction.Left:
-                    x = state.x - speed;
+                    x = state.x - variables.step;
                     break;
                 case Direction.Right:
-                    x = state.x + speed;
+                    x = state.x + variables.step;
                     break;
-                case Direction.Top:
-                    y = y - speed;
+                case Direction.Up:
+                    y = y - variables.step;
                     break;
                 case Direction.Down:
-                    y = y + speed;
+                    y = y + variables.step;
                     break;
                 default:
                     return state;
+            }
+
+            if (x < 0) {
+                x = 0;
+            } else if (x > maxX) {
+                x = maxX
+            }
+
+            if (y < 0) {
+                y = 0;
+            } else if (y > maxY) {
+                y = maxY
             }
 
             return { id: state.id, x: x, y: y };

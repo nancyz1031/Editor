@@ -3,16 +3,13 @@ body {
 }
 
 #world {
-    margin: auto;
-    border: 8px double #0D23A4;
-    width: 800px;
-    height: 600px;
+    margin: 20px auto;
+    outline: 8px double #0D23A4;
     position: relative;
 }
 
 .pacMan {
     background-color: yellow;
-    width: 20px;
-    height: 20px;
     position: absolute;
+    transition: left 0.1s, top 0.1s;
 }
