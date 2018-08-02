@@ -14,7 +14,7 @@ export class OtherPlayers extends React.Component<StateProps & DispatchProps, {}
     public render() {
         const props = this.props;
         return <div>
-            {props.players.map(player => <PacMan player={player} current={false} />)}
+            {props.players.map(player => <PacMan key={player.id} player={player} current={false} />)}
         </div>;
     }
 }

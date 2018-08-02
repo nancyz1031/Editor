@@ -49,3 +49,14 @@ export interface StartGameAction {
     currentPlayer: Player,
     world: World,
 }
+
+export interface UpdatePlayersAction {
+    type: ActionType.UpdatePlayers,
+    players: Players,
+}
+
+export interface OtherPlayerMoveToAction {
+    type: ActionType.OtherPlayerMoveTo,
+    id: string,
+    position: Position,
+}

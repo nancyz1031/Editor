@@ -15,7 +15,7 @@ namespace Editor.Hubs
         private const string UpdateRanksFunc = "UpdateRanks";
         private const string UpdatePeasFunc = "UpdatePeas";
         private const string StartGameFunc = "StartGame";
-        private const string PlayerMoveToFunc = "MoveTo";
+        private const string PlayerMoveToFunc = "PlayerMoveTo";
         private const string UpdatePlayersFunc = "UpdatePlayers";
 
         private static object SyncRoot = new object();
@@ -52,13 +52,13 @@ namespace Editor.Hubs
 
         public override Task OnDisconnectedAsync(Exception exception)
         {
-            this.PlayerLeave(this.Context.ConnectionId);
+            this.PlayerLeave(GetPlayerId());
             return base.OnDisconnectedAsync(exception);
         }
 
         public void UserJoin(string userName, string color)
         {
-            var user = new Player(this.Context.ConnectionId, userName, color, GetRandomPosition());
+            var user = new Player(GetPlayerId(), userName, color, GetRandomPosition());
             world.Players[user.Id] = user;
             TryFillPeas();
             RefreshRanks();
@@ -68,13 +68,18 @@ namespace Editor.Hubs
 
         public void Restart()
         {
-            if (world.Players.TryGetValue(this.Context.ConnectionId, out Player player))
+            if (world.Players.TryGetValue(GetPlayerId(), out Player player))
             {
                 player.Score = 0;
                 player.Position = GetRandomPosition();
                 SendMessage($"{player.Name} joined game");
                 Clients.Caller.SendAsync(StartGameFunc, player, world);
             }
+        }
+
+        private string GetPlayerId()
+        {
+            return this.Context.ConnectionId;
         }
 
         private void PlayerLeave(string playerId)
@@ -90,13 +95,16 @@ namespace Editor.Hubs
 
         public void PlayerMoveTo(Position position)
         {
-            Clients.Others.SendAsync(this.Context.ConnectionId, position);
+            var playerId = GetPlayerId();
+            world.Players.TryGetValue(playerId, out Player player);
+            player.Position = position;
+            Clients.Others.SendAsync(PlayerMoveToFunc, playerId, position);
             var peas = world.Peas.Values.ToArray();
             foreach (var pea in peas)
             {
                 if (pea.Position.Equals(position))
                 {
-                    TryEatPea(this.Context.ConnectionId, pea.Id);
+                    TryEatPea(playerId, pea.Id);
                 }
             }
         }

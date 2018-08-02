@@ -12,8 +12,7 @@ body {
 
 #ranks{
     margin-top: 20px;
-    margin-right:20px;
-    float:right;
+    float: left;
     outline: 8px double #fff;
 }
 
