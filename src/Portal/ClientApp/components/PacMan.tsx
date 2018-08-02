@@ -24,7 +24,7 @@ export class PacMan extends React.Component<Props, {}> {
         }
 
         return <div className={classNames} style={{ left: left, top: top, width: variables.size, height: variables.size }}>
-            <span style={{ color: player.color }}>{position.x + " " + position.y}</span>
+            <span style={{ color: player.color }}>{player.id}</span>
         </div>;
     }
 }

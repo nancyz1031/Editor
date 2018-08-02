@@ -20,8 +20,8 @@ connection.on("UpdatePeas", (peas: { [key: string]: Pea }) => {
     store.dispatch(actionCreators.updatePeas(peas));
 });
 
-connection.on("StartGame", (currentPlayer: Player, world: World) => {
-    store.dispatch(actionCreators.startGame(currentPlayer, world));
+connection.on("StartGame", (playerId: string, world: World) => {
+    store.dispatch(actionCreators.startGame(playerId, world));
 });
 
 connection.on("PlayerMoveTo", (playerId: string, position: Position) => {

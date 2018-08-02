@@ -10,13 +10,12 @@ namespace Editor.Hubs.Model
         public int Score { get; set; }
         public Position Position { get; set; }
 
-        public Player(string id, string userName, string color, Position position)
+        public Player(string id, string userName, string color)
         {
             this.Id = id;
             this.Name = userName;
             this.Color = color;
             this.Score = 0;
-            this.Position = position;
         }
     }
 }

@@ -16,8 +16,8 @@ export const actionCreators = {
     updatePeas: (peas: Peas) => {
         return { type: ActionType.UpdatePeas, peas: peas };
     },
-    startGame: (currentPlayer: Player, world: World) => {
-        return { type: ActionType.StartGame, currentPlayer, world: world };
+    startGame: (playerId: string, world: World) => {
+        return { type: ActionType.StartGame, playerId:playerId, world: world };
     },
     updatePlayers: (players: Players) => {
         return { type: ActionType.UpdatePlayers, players: players };
@@ -51,7 +51,7 @@ export const reducer: Reducer<WorldStoreState> = (state: WorldStoreState = null,
             const id = (action as OtherPlayerMoveToAction).id;
             const position = (action as OtherPlayerMoveToAction).position;
             const changes = {};
-            changes[id] = Object.assign({}, state[id], { position: position });
+            changes[id] = Object.assign({}, state.players[id], { position: position });
             return Object.assign({}, state, {
                 players: Object.assign({}, state, changes)
             });

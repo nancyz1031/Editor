@@ -58,28 +58,36 @@ namespace Editor.Hubs
 
         public void UserJoin(string userName, string color)
         {
-            var user = new Player(GetPlayerId(), userName, color, GetRandomPosition());
+            var id = Guid.NewGuid().ToString();
+            SetPlayerId(id);
+            var user = new Player(id, userName, color);
             world.Players[user.Id] = user;
+            Start();
             TryFillPeas();
             RefreshRanks();
             RefreshPlayers();
-            Restart();
         }
 
-        public void Restart()
+        public void Start()
         {
             if (world.Players.TryGetValue(GetPlayerId(), out Player player))
             {
                 player.Score = 0;
                 player.Position = GetRandomPosition();
                 SendMessage($"{player.Name} joined game");
-                Clients.Caller.SendAsync(StartGameFunc, player, world);
+                Clients.Caller.SendAsync(StartGameFunc, player.Id, world);
             }
+        }
+
+        private void SetPlayerId(string id)
+        {
+            this.Context.Items["id"] = id;
         }
 
         private string GetPlayerId()
         {
-            return this.Context.ConnectionId;
+            //return this.Context.ConnectionId;
+            return this.Context.Items["id"].ToString();
         }
 
         private void PlayerLeave(string playerId)

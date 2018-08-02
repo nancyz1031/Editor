@@ -62,12 +62,13 @@ const emptyPlayer: PlayerStoreState = {
 export const reducer: Reducer<PlayerStoreState> = (state: PlayerStoreState = emptyPlayer, action: Action | StartGameAction | PlayerMoveAction): PlayerStoreState => {
     switch (action.type) {
         case ActionType.StartGame:
-            return (action as StartGameAction).currentPlayer;
+            const id = (action as StartGameAction).playerId;
+            const players = (action as StartGameAction).world.players;
+            return players[id];
 
         case ActionType.PlayerMove:
             const position = getNewPosition(state.position, (action as PlayerMoveAction).direction);
             if (position !== state.position) {
-                // connector.playerMoveTo(position);
                 utility.playerMoveTo(position);
                 return Object.assign({}, state, {
                     position: position

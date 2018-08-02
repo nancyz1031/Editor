@@ -46,7 +46,7 @@ export interface OtherPlayerMoveToAction {
 
 export interface StartGameAction {
     type: ActionType.StartGame,
-    currentPlayer: Player,
+    playerId: string,
     world: World,
 }
 
