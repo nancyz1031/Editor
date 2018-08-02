@@ -1,19 +1,22 @@
 import { Action, Reducer } from 'redux';
 import { ActionType, UpdateRanksAction, UpdatePeasAction, StartGameAction } from './actions';
-import { World, Rank, Peas, Player, Variables, Players } from '../contract';
+import { World, Rank, Ranks, Peas, Player, Variables, Players } from '../contract';
 
 export interface WorldStoreState {
     variables: Variables;
     peas: Peas;
     players: Players;
-    ranks: Rank[];
+    ranks: Ranks;
 }
 
 export const actionCreators = {
-    updateRanks: (ranks: Rank[]) => {
+    updateRanks: (ranks: Ranks) => {
         return { type: ActionType.UpdateRanks, ranks: ranks };
     },
     updatePeas: (peas: Peas) => {
+        return { type: ActionType.UpdatePeas, peas: peas };
+    },
+    updatePlayers: (peas: Peas) => {
         return { type: ActionType.UpdatePeas, peas: peas };
     },
     startGame: (currentPlayer: Player, world: World) => {

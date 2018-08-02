@@ -4,6 +4,7 @@ import { variables } from '../variables';
 import * as contract from '../contract';
 import { PeasContainer } from './PeasContainer';
 import { RanksContainer } from './RanksContainer';
+import { OtherPlayersContainer } from './OtherPlayersContainer';
 
 export type StateProps = contract.World;
 
@@ -24,6 +25,7 @@ export class World extends React.Component<StateProps & DispatchProps, {}> {
             <div>
                 <div id="world" style={{ width: width, height: height }}>
                     <PeasContainer />
+                    <OtherPlayersContainer />
                     <PlayerContainer />
                 </div>
                 <RanksContainer />

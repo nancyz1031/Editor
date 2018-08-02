@@ -3,6 +3,7 @@ import { variables } from '../variables';
 import { Player } from '../contract';
 
 interface Props {
+    current: boolean;
     player: Player;
 }
 
@@ -17,7 +18,12 @@ export class PacMan extends React.Component<Props, {}> {
         const position = player.position;
         const left = position.x * variables.size;
         const top = position.y * variables.size;
-        return <div className="pacMan" style={{ left: left, top: top, width: variables.size, height: variables.size }}>
+        let classNames = "pacMan";
+        if (props.current) {
+            classNames += " current";
+        }
+
+        return <div className={classNames} style={{ left: left, top: top, width: variables.size, height: variables.size }}>
             <span style={{ color: player.color }}>{player.name}</span>
         </div>;
     }

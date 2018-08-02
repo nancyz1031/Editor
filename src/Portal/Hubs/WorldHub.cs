@@ -15,6 +15,8 @@ namespace Editor.Hubs
         private const string UpdateRanksFunc = "UpdateRanks";
         private const string UpdatePeasFunc = "UpdatePeas";
         private const string StartGameFunc = "StartGame";
+        private const string PlayerMoveToFunc = "MoveTo";
+        private const string UpdatePlayersFunc = "UpdatePlayers";
 
         private static object SyncRoot = new object();
         private static object RankSyncRoot = new object();
@@ -43,6 +45,11 @@ namespace Editor.Hubs
             }
         }
 
+        private void RefreshPlayers()
+        {
+            Clients.All.SendAsync(UpdatePlayersFunc, world.Players);
+        }
+
         public override Task OnDisconnectedAsync(Exception exception)
         {
             this.PlayerLeave(this.Context.ConnectionId);
@@ -55,6 +62,7 @@ namespace Editor.Hubs
             world.Players[user.Id] = user;
             TryFillPeas();
             RefreshRanks();
+            RefreshPlayers();
             Restart();
         }
 
@@ -76,11 +84,13 @@ namespace Editor.Hubs
             {
                 SendMessage($"{player.Name} left game");
                 RefreshRanks();
+                RefreshPlayers();
             }
         }
 
         public void PlayerMoveTo(Position position)
         {
+            Clients.Others.SendAsync(this.Context.ConnectionId, position);
             var peas = world.Peas.Values.ToArray();
             foreach (var pea in peas)
             {

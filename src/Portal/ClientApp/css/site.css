@@ -21,7 +21,12 @@ body {
     background-color: yellow;
     position: absolute;
     border-radius: 50%;
+    opacity: 0.4;
     transition: left 0.05s, top 0.05s;
+}
+
+.pacMan.current {
+    opacity: 1;
 }
 
 .pacMan.up {

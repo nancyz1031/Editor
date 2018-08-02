@@ -48,7 +48,6 @@ export class Player extends React.Component<StateProps & DispatchProps, {}> {
 
     public render() {
         const props = this.props;
-        return <PacMan player={props.player}>
-        </PacMan>;
+        return <PacMan player={props.player} current={true} />
     }
 }
