@@ -13,19 +13,29 @@ let routes = RoutesModule.routes;
 import * as signalR from '@aspnet/signalr';
 
 const connection = new signalR.HubConnectionBuilder()
-    .withUrl("/chatHub")
+    .withUrl("/worldHub")
     .build();
 
-connection.on("ReceiveMessage", (user, message) => {
-    const msg = message.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-    const encodedMsg = user + " says " + msg;
-    console.log(encodedMsg);
-});
+    connection.on("SystemMessage", (message) => {
+        console.info(message);
+    });
+    
+    connection.on("UpdateRank", (ranks) => {
+        console.info(ranks);
+    });
+    
+    connection.on("UpdatePeas", (peas) => {
+        console.info(peas);
+    });
+    
+    connection.on("StartGame", (user, variables, ranks) => {
+        debugger;
+    });
 
 connection.start().catch(err => console.error(err.toString()));
 
-window.setInterval(() => {
-    connection.invoke("SendMessage", 'user', 'message 123')
+window.setTimeout(() => {
+    connection.invoke("UserJoin", 'user', 'yellow')
         .catch(err => console.error(err.toString()));
 }, 1000)
 
