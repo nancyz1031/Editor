@@ -46,7 +46,7 @@ export const reducer: Reducer<WorldStoreState> = (state: WorldStoreState = null,
             return (action as StartGameAction).world;
 
         case ActionType.SystemMessage:
-            let messages = state.messages || [];
+            let messages = (state && state.messages) || [];
             messages = [
                 (action as SystemMessageAction).message,
                 ...messages

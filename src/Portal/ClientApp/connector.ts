@@ -32,7 +32,11 @@ connection.on("SystemMessage", (message: string) => {
     store.dispatch(actionCreators.systemMessage(message));
 });
 
-connection.start().catch(err => console.error(err.toString()));
+connection.start()
+    .then(() => {
+        console.log("Connected!!");
+    })
+    .catch(err => console.error(err.toString()));
 
 export function intialize() {
 }
