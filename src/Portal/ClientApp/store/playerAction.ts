@@ -2,7 +2,7 @@ import { Action, Reducer } from 'redux';
 import { variables } from '../variables'
 import { ActionType, StartGameAction, PlayerMoveAction, Direction } from './actions';
 import { Player, Position } from '../contract';
-import * as connector from '../connector';
+import * as connector from '../SignalRConnector';
 import { utility } from '../utility';
 
 export type PlayerStoreState = Player;

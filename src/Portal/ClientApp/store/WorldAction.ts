@@ -51,7 +51,7 @@ export const reducer: Reducer<WorldStoreState> = (state: WorldStoreState = null,
                 (action as SystemMessageAction).message,
                 ...messages
             ];
-            messages = messages.slice(0, 20);
+            messages = messages.slice(0, 19);
 
             return Object.assign({}, state, {
                 messages: messages

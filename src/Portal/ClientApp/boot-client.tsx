@@ -9,7 +9,7 @@ import { createBrowserHistory } from 'history';
 import configureStore from './configureStore';
 import { ApplicationState } from './store';
 import * as RoutesModule from './routes';
-import * as connector from './connector';
+import * as connector from './SignalRConnector';
 let routes = RoutesModule.routes;
 
 if (typeof Object.assign != 'function') {

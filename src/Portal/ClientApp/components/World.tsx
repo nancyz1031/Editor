@@ -24,7 +24,7 @@ export class World extends React.Component<StateProps & DispatchProps, {}> {
         const width = world.variables.worldWidth * variables.size;
         const height = world.variables.worldHeight * variables.size;
         return <div>
-            <p>Use 'w', 'a', 's', 'd' to control your pac man movement and eat dot as much as you can!</p>
+            <p>Use 'w', 'a', 's', 'd' to control your pac man movement and eat dot as much as you can! Refresh your webbrowser to restart your game session.</p>
             <div id="world" style={{ width: width, height: height }}>
                 <DotsContainer />
                 <OtherPlayersContainer />

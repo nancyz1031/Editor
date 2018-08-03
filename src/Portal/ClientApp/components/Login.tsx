@@ -16,7 +16,14 @@ export class Login extends React.Component<StateProps & DispatchProps, State> {
         super(props)
         this.state = { userName: null };
         this._handleChange = this._handleChange.bind(this);
+        this._handleKeyPress = this._handleKeyPress.bind(this);
         this._login = this._login.bind(this);
+    }
+
+    _handleKeyPress = (event) => {
+        if (event.key == 'Enter') {
+            this._login();
+        }
     }
 
     private _handleChange(event: React.ChangeEvent<HTMLInputElement>) {
@@ -32,9 +39,9 @@ export class Login extends React.Component<StateProps & DispatchProps, State> {
     }
 
     componentDidMount() {
-        setTimeout(() => {
-            this.props.login("test");            
-        }, 200);
+        // setTimeout(() => { // Auto login for local debug
+        //     this.props.login("test");
+        // }, 200);
     }
 
     public render() {
@@ -43,6 +50,7 @@ export class Login extends React.Component<StateProps & DispatchProps, State> {
                 className="user-name"
                 value={this.state.userName}
                 onChange={this._handleChange}
+                onKeyPress={this._handleKeyPress}
                 maxLength={20}
                 placeholder="Please input your name" />
             <div>

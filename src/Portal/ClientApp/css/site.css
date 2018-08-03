@@ -80,6 +80,11 @@ body {
     text-align: center;
 }
 
+.messages li{
+    list-style: none;
+    margin-left: 0;
+}
+
 .btn {
     border: 1px solid #aaa;
     border-left: 0px;

@@ -13,10 +13,13 @@ export class Messages extends React.Component<StateProps & DispatchProps, {}> {
     public render() {
         const props = this.props;
         const messages = props.messages || [];
-        return <div>{messages.map((message, i) =>
-            <li key={message + i}>
-                {message}
-            </li>
-        )}</div>;
+        return <ul className="messages">
+            {messages.map((message, i) =>
+                <li key={message + i}>
+                    {message}
+                </li>
+            )}
+            {messages.length > 0 && <li>...</li>}
+        </ul>;
     }
 }
