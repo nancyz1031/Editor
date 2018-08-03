@@ -34,14 +34,16 @@ connection.on("UpdatePlayers", (players: Players) => {
 
 connection.start().catch(err => console.error(err.toString()));
 
-export function intialize(userName: string, color: string) {
-    connection.invoke("UserJoin", userName, color)
-        .catch(err => console.error(err.toString()));
+export function intialize() {
 }
 
 (window as any).connector = {
     playerMoveTo: (position: Position) => {
         connection.invoke("PlayerMoveTo", position)
+            .catch(err => console.error(err.toString()));
+    },
+    playerJoin: (userName: string) => {
+        connection.invoke("PlayerJoin", userName)
             .catch(err => console.error(err.toString()));
     }
 }

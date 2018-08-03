@@ -15,6 +15,8 @@ namespace Editor.Hubs
         private const string StartGameFunc = "StartGame";
         private const string PlayerMoveToFunc = "PlayerMoveTo";
         private const string UpdatePlayersFunc = "UpdatePlayers";
+        private static string[] Colors = new[] { "#F44336", "#009688", "#FFEB3B" };
+        private static int playerIndex = 0;
 
         private static object SyncRoot = new object();
         private static object RankSyncRoot = new object();
@@ -54,9 +56,10 @@ namespace Editor.Hubs
             return base.OnDisconnectedAsync(exception);
         }
 
-        public void UserJoin(string userName, string color)
+        public void PlayerJoin(string userName)
         {
             var id = Guid.NewGuid().ToString();
+            var color = Colors[playerIndex++ % Colors.Length];
             SetPlayerId(id);
             var user = new Player(id, userName, color);
             world.Players[user.Id] = user;
@@ -84,12 +87,18 @@ namespace Editor.Hubs
 
         private string GetPlayerId()
         {
-            //return this.Context.ConnectionId;
-            return this.Context.Items["id"].ToString();
+            var id = this.Context.Items["id"];
+            return id?.ToString();
         }
 
         private void PlayerLeave(string playerId)
         {
+            if (playerId == null)
+            {
+                // Haven't login
+                return;
+            }
+
             world.Players.TryRemove(playerId, out Player player);
             if (player != null)
             {

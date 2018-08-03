@@ -35,9 +35,7 @@ function renderApp() {
 
 renderApp();
 
-window.setTimeout(() => {
-    connector.intialize("test", "yellow");
-}, 1000)
+connector.intialize();
 
 // Allow Hot Module Replacement
 if (module.hot) {

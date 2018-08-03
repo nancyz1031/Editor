@@ -5,6 +5,7 @@ import * as contract from '../contract';
 import { DotsContainer } from './DotsContainer';
 import { RanksContainer } from './RanksContainer';
 import { OtherPlayersContainer } from './OtherPlayersContainer';
+import { LoginContainer } from './LoginContainer';
 
 export type StateProps = contract.World;
 
@@ -16,7 +17,7 @@ export class World extends React.Component<StateProps & DispatchProps, {}> {
     public render() {
         const world = this.props;
         if (!world || !world.variables) {
-            return null;
+            return <LoginContainer />;
         }
 
         const width = world.variables.worldWidth * variables.size;

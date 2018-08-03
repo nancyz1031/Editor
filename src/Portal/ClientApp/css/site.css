@@ -40,6 +40,10 @@ body {
     outline: 1px double red;
 }
 
+.pacMan .name {
+    margin-top:-20px;
+}
+
 .dot {
     background-color: yellowgreen;
     border-radius: 50%;
