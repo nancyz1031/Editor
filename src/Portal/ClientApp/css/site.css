@@ -19,7 +19,7 @@ body {
     border: 1px solid #aaa;
     margin: 20px 20px 20px 0;
     position: relative;
-    background-size: 20px 20px;
+    background-size: 10px 10px;
     background-image: linear-gradient(to right, #f0f0f0 1px, transparent 1px), linear-gradient(to bottom, #f0f0f0 1px, transparent 1px);
     box-shadow: 8px 8px 5px #eee;
 }
@@ -27,6 +27,7 @@ body {
 #ranks{
     margin: 20px 0 0 20px;
     border-collapse: collapse;
+    box-shadow: 8px 8px 5px #eee;
 }
 
 #ranks th, #ranks, td{
