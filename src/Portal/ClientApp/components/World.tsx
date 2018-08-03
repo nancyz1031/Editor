@@ -23,14 +23,12 @@ export class World extends React.Component<StateProps & DispatchProps, {}> {
         const width = world.variables.worldWidth * variables.size;
         const height = world.variables.worldHeight * variables.size;
         return <div>
-            <div>
-                <div id="world" style={{ width: width, height: height }}>
-                    <DotsContainer />
-                    <OtherPlayersContainer />
-                    <PlayerContainer />
-                </div>
-                <RanksContainer />
+            <div id="world" style={{ width: width, height: height }}>
+                <DotsContainer />
+                <OtherPlayersContainer />
+                <PlayerContainer />
             </div>
+            <RanksContainer />
         </div>;
     }
 }

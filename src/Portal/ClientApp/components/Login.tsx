@@ -31,17 +31,22 @@ export class Login extends React.Component<StateProps & DispatchProps, State> {
         }
     }
 
+    componentDidMount() {
+        setTimeout(() => {
+            this.props.login("test");            
+        }, 200);
+    }
+
     public render() {
-        return <div>
+        return <div className="login-panel">
             <input
                 className="user-name"
                 value={this.state.userName}
                 onChange={this._handleChange}
-                placeholder="Please input your player name" />
+                placeholder="Please input your name" />
             <div>
-                <button
-                    disabled={!this.state.userName}
-                    onClick={this._login}>Start Game</button>
+                {this.state.userName && <button className={"active btn"}
+                    onClick={this._login}>Start Game</button>}
             </div>
         </div>;
     }
