@@ -136,6 +136,7 @@ namespace Editor.Hubs
                     return;
                 }
 
+                SendMessage($"{user.Name} eat a dot!");
                 user.Score++;
                 world.Dots.TryRemove(dotId, out Dot dot);
                 TryFillDots();

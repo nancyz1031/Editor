@@ -6,6 +6,7 @@ import { DotsContainer } from './DotsContainer';
 import { RanksContainer } from './RanksContainer';
 import { OtherPlayersContainer } from './OtherPlayersContainer';
 import { LoginContainer } from './LoginContainer';
+import { MessagesContainer } from './MessagesContainer';
 
 export type StateProps = contract.World;
 
@@ -27,6 +28,7 @@ export class World extends React.Component<StateProps & DispatchProps, {}> {
                 <DotsContainer />
                 <OtherPlayersContainer />
                 <PlayerContainer />
+                <MessagesContainer />
             </div>
             <RanksContainer />
         </div>;

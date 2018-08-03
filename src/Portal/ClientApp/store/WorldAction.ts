@@ -1,13 +1,8 @@
 import { Action, Reducer } from 'redux';
-import { ActionType, UpdateRanksAction, UpdateDotsAction, StartGameAction, OtherPlayerMoveToAction, UpdatePlayersAction } from './actions';
+import { ActionType, UpdateRanksAction, UpdateDotsAction, StartGameAction, OtherPlayerMoveToAction, UpdatePlayersAction, SystemMessageAction } from './actions';
 import { World, Rank, Ranks, Dots, Player, Variables, Players, Position } from '../contract';
 
-export interface WorldStoreState {
-    variables: Variables;
-    dots: Dots;
-    players: Players;
-    ranks: Ranks;
-}
+export type WorldStoreState = World;
 
 export const actionCreators = {
     updateRanks: (ranks: Ranks) => {
@@ -25,6 +20,9 @@ export const actionCreators = {
     otherPlayerMoveTo: (id: string, position: Position) => {
         return { type: ActionType.OtherPlayerMoveTo, id: id, position: position };
     },
+    systemMessage: (message: string) => {
+        return { type: ActionType.SystemMessage, message: message };
+    }
 };
 
 export const reducer: Reducer<WorldStoreState> = (state: WorldStoreState = null, action: Action | UpdateRanksAction | UpdateDotsAction | StartGameAction) => {
@@ -46,6 +44,18 @@ export const reducer: Reducer<WorldStoreState> = (state: WorldStoreState = null,
 
         case ActionType.StartGame:
             return (action as StartGameAction).world;
+
+        case ActionType.SystemMessage:
+            let messages = state.messages || [];
+            messages = [
+                (action as SystemMessageAction).message,
+                ...messages
+            ];
+            messages = messages.slice(0, 20);
+
+            return Object.assign({}, state, {
+                messages: messages
+            });
 
         case ActionType.OtherPlayerMoveTo:
             const id = (action as OtherPlayerMoveToAction).id;

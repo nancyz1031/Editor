@@ -43,6 +43,7 @@ export class Login extends React.Component<StateProps & DispatchProps, State> {
                 className="user-name"
                 value={this.state.userName}
                 onChange={this._handleChange}
+                maxLength={20}
                 placeholder="Please input your name" />
             <div>
                 {this.state.userName && <button className={"active btn"}

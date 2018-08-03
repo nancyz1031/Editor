@@ -8,6 +8,7 @@ export const enum ActionType {
     UpdatePlayers,
     StartGame,
     OtherPlayerMoveTo,
+    SystemMessage,
 }
 
 export enum Direction {
@@ -59,4 +60,9 @@ export interface OtherPlayerMoveToAction {
     type: ActionType.OtherPlayerMoveTo,
     id: string,
     position: Position,
+}
+
+export interface SystemMessageAction {
+    type: ActionType.SystemMessage,
+    message: string,
 }

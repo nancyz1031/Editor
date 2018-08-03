@@ -48,4 +48,5 @@ export interface World {
     dots: Dots;
     players: Players;
     ranks: Ranks;
+    messages: string[];
 }

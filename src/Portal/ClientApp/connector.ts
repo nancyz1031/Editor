@@ -2,15 +2,10 @@ import * as signalR from '@aspnet/signalr';
 import { Rank, Player, World, Dot, Position, Players } from './contract';
 import { store } from './boot-client';
 import { actionCreators } from './store/WorldAction';
-import { ApplicationState } from './store';
 
 const connection = new signalR.HubConnectionBuilder()
     .withUrl("/worldHub")
     .build();
-
-connection.on("SystemMessage", (message) => {
-    console.info(message);
-});
 
 connection.on("UpdateRanks", (ranks: Rank[]) => {
     store.dispatch(actionCreators.updateRanks(ranks));
@@ -30,6 +25,11 @@ connection.on("PlayerMoveTo", (playerId: string, position: Position) => {
 
 connection.on("UpdatePlayers", (players: Players) => {
     store.dispatch(actionCreators.updatePlayers(players));
+});
+
+connection.on("SystemMessage", (message: string) => {
+    console.info(message);
+    store.dispatch(actionCreators.systemMessage(message));
 });
 
 connection.start().catch(err => console.error(err.toString()));
