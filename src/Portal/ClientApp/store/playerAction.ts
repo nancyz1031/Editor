@@ -54,7 +54,7 @@ function getNewPosition(position: Position, direction: Direction) {
 const emptyPlayer: PlayerStoreState = {
     id: "",
     name: "",
-    color: "",
+    index: 0,
     score: 0,
     position: { x: 0, y: 0 },
 };

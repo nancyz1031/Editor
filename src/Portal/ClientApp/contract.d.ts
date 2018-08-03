@@ -6,7 +6,7 @@ export interface Position {
 export interface Player {
     id: string;
     name: string;
-    color: string;
+    index: number;
     score: number;
     position: Position;
 }
@@ -22,7 +22,7 @@ export interface Rank {
     id: string;
     score: number;
     userName: string;
-    color: string;
+    colorIndex: number;
 }
 
 export interface Variables {

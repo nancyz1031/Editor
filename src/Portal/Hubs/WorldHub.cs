@@ -15,8 +15,6 @@ namespace Editor.Hubs
         private const string StartGameFunc = "StartGame";
         private const string PlayerMoveToFunc = "PlayerMoveTo";
         private const string UpdatePlayersFunc = "UpdatePlayers";
-        private static string[] Colors = new[] { "#F44336", "#009688", "#FFEB3B" };
-        private static int playerIndex = 0;
 
         private static object SyncRoot = new object();
         private static object RankSyncRoot = new object();
@@ -33,7 +31,7 @@ namespace Editor.Hubs
             {
                 var oldRanks = JsonConvert.SerializeObject(world.Ranks);
                 world.Ranks = world.Players.Values.ToList()
-                    .Select(user => new Rank() { Id = user.Id, UserName = user.Name, Color = user.Color, Score = user.Score })
+                    .Select(user => new Rank() { Id = user.Id, UserName = user.Name, ColorIndex = user.Index, Score = user.Score })
                     .OrderByDescending(rank => rank.Score)
                     .ToList();
                 var newRanks = JsonConvert.SerializeObject(world.Ranks);
@@ -59,9 +57,8 @@ namespace Editor.Hubs
         public void PlayerJoin(string userName)
         {
             var id = Guid.NewGuid().ToString();
-            var color = Colors[playerIndex++ % Colors.Length];
             SetPlayerId(id);
-            var user = new Player(id, userName, color);
+            var user = new Player(id, userName);
             world.Players[user.Id] = user;
             Start();
             TryFillDots();

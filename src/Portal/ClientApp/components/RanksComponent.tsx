@@ -1,5 +1,6 @@
 import * as React from 'react';
 import * as contract from '../contract';
+import { utility } from '../utility';
 
 export interface StateProps {
     ranks: contract.Ranks;
@@ -19,8 +20,9 @@ export class RanksComponent extends React.Component<StateProps & DispatchProps, 
         const id = props.id;
         const rankElements = props.ranks
             .map((rank, index) => {
+                const color = utility.getColor(rank.colorIndex)
                 const isCurrent = rank.id === id;
-                return <tr key={rank.id} style={{ color: rank.color }}>
+                return <tr key={rank.id} style={{ color: color }}>
                     <td>{(index + 1).toString() + (isCurrent ? " (you)" : "")}</td>
                     <td>{rank.score}</td>
                     <td>{rank.userName}</td>
