@@ -23,16 +23,16 @@ export class RanksComponent extends React.Component<StateProps & DispatchProps, 
                 const color = utility.getColor(rank.colorIndex)
                 const isCurrent = rank.id === id;
                 return <tr key={rank.id} style={{ color: color }}>
+                     <td>{rank.userName}</td>
                     <td>{(index + 1).toString() + (isCurrent ? " (you)" : "")}</td>
                     <td>{rank.score}</td>
-                    <td>{rank.userName}</td>
                 </tr>
             });
         return <table id="ranks">
             <thead>
+                <th>NAME</th>
                 <th>RANK</th>
                 <th>SCORE</th>
-                <th>NAME</th>
             </thead>
             <tbody>
                 {rankElements}

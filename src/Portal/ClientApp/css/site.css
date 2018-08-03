@@ -1,5 +1,5 @@
 body {
-    /* background-color: black; */
+    min-width: 700px;;
 }
 
 #react-app {
@@ -7,9 +7,17 @@ body {
     justify-content: center;
 }
 
+.world-container {
+    display: flex;
+}
+
+.tips {
+    width: 600px;
+}
+
 #world {
     border: 1px solid #aaa;
-    margin-top: 20px;
+    margin: 20px 20px 20px 0;
     position: relative;
     background-size: 20px 20px;
     background-image: linear-gradient(to right, #f0f0f0 1px, transparent 1px), linear-gradient(to bottom, #f0f0f0 1px, transparent 1px);
@@ -17,7 +25,7 @@ body {
 }
 
 #ranks{
-    margin-top: 20px;
+    margin: 20px 0 0 20px;
     border-collapse: collapse;
 }
 
@@ -52,6 +60,8 @@ body {
     border-radius: 50%;
     position: absolute;
     animation: blinker 1s linear infinite;
+    width: 8px !important;
+    height:  8px !important;
 }
 
 @keyframes blinker {
@@ -61,13 +71,13 @@ body {
   }
 
 .login-panel {
-    width: 300px;
-    height: 100px;
+    width: 300px;    
+    height: 130px;
+    text-align: center;
     background-color: #eee;
     border: 1px solid #aaa;
-    display: flex;
     padding: 30px 4px;
-    box-shadow: 8px 8px 5px #eee;
+    box-shadow: 8px 8px 5px rgb(80, 32, 32);
     background-image: linear-gradient(to right, #f0f0f0 1px, transparent 1px), linear-gradient(to bottom, #f0f0f0 1px, transparent 1px);
 }
 
@@ -80,16 +90,21 @@ body {
     text-align: center;
 }
 
+.messages {
+    height: 200px;
+    overflow-y: auto;
+    -webkit-margin-before: 0;
+    -webkit-padding-start: 0px;
+    -webkit-margin-after: 0;
+}
+
 .messages li{
     list-style: none;
-    margin-left: 0;
 }
 
 .btn {
     border: 1px solid #aaa;
-    border-left: 0px;
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
+    margin-top: 6px;
 }
 
 .disable {
